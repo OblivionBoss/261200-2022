@@ -1,0 +1,136 @@
+1.) Data Implementations
+========================
+-- RPGcharacter class --
+========================
+- private int maxHP => store character's data of maximum health points
+- private int maxMana => store character's data of maximum mana points
+- private int level => store character's level
+- private double maxSpeed => store character's data of maximum speed
+- private double baseSpeed => store character's data of default speed
+- private double HP => store character's data of health points
+- private double mana => store character's data of mana points
+- private Sword sword => store character's data of equipped sword
+- private Shield shield => store character's data of equipped shield
+
+=================
+-- Sword class --
+=================
+- private int level => store sword's level
+- private double damage => store sword's damage
+
+==================
+-- Shield class --
+==================
+- private int level => store shield's level
+- private double defense => store shield's defense
+
+2.) Operations
+========================
+-- RPGcharacter class --
+========================
+public RPGcharacter(double speed) :
+=> Class constructor to assign
+   - HP,maxHP,mana,maxMana
+   - level,baseSpeed,maxSpeed
+   to character with double speed as input
+public void levelUp() :
+=> operation to level up character and assign new value of
+   level,maxHP,maxMana,baseSpeed and maxSpeed with updateSpeed() operation
+public void attack(RPGcharacter p) :
+=> operation to attack target RPGcharacter p and consists of 3 condition
+   - if character has no sword equip : return nothing (can't attack target without sword equipped)
+   - if target is equipped with shield : sword damage get lessen by shield defense
+   - if target isn't equipped with shield : target received full sword damage
+public void equippedSword(Sword sword) :
+=> operation to make character equip sword
+   and called updateSpeed() operation to update current character's speed
+   (send null to unequipped sword)
+public void equippedShield(Shield shield){// send null to unequipped shield
+=> operation to make character equip shield
+   and called updateSpeed() operation to update current character's speed
+   (send null to unequipped shield)
+private void updateSpeed(){
+=> update character speed by determined form baseSpeed,level,Sword,Shield
+public void printStat(){
+=> show character's current status which consist of
+   - Level,Max HP,Max Mana,Max Speed,HP,Mana,Base Speed
+   - Sword and Shield equipped
+
+=================
+-- Sword class --
+=================
+public Sword(double damage) :
+=> Class constructor to assign
+   sword default level (level 0) and damage
+   to sword with double damage as input
+public void levelUp() :
+=> operation to level up sword and assign new value of level and damage
+public double getDamage() :
+=> operation to return value of referenced sword's damage
+public int getLevel() :
+=> operation to return value of referenced sword's level
+public void printStat() :
+=> show sword's current status which consist of Level and Sword Damage
+
+==================
+-- Shield class --
+==================
+public Shield(double defense) :
+=> Class constructor to assign
+   shield default level (level 0) and defense
+   to shield with double defense as input
+public void levelUp() :
+=> operation to level up shield and assign new value of level and defense
+public double getDefense() :
+=> operation to return value of referenced shield's defense
+public int getLevel() :
+=> operation to return value of referenced shield's level
+public void printStat() :
+=> show shield's current status which consist of Level and Shield Defense
+
+3.) Information Computing
+========================
+-- RPGcharacter class --
+========================
+- private int level => level default value is 0 and become more after called operation levelUp()
+- private double maxSpeed
+  => consist of 2 operations
+     -Constructor : (default value)
+      => depends on level and baseSpeed [ maxSpeed = baseSpeed*(0.1+0.03*level) ]
+     -updateSpeed()
+      => Similar to constructor condition
+         but also depends on equipped shield and sword
+         which reduce character maximum speed
+         Equipped Sword : maxSpeed -= baseSpeed*(0.1+0.04*sword.getLevel())
+         Equipped Shield : maxSpeed -= baseSpeed*(0.1+0.04*shield.getLevel())
+- private double HP
+=> default value of HP is 100 but
+   can be reduced by calling attack(RPGcharacter p)
+- private int maxHP
+=> default value of maxHP is 100 but
+   can be add by calling levelUp() in
+   which depends on level
+   [ maxHP = 100+10*level ]
+- private int maxMana
+=> default value of maxMana is 50 but
+   can be add by calling levelUp() in
+   which depends on level
+   [ maxMana = 50+2*level ]
+
+=================
+-- Sword class --
+=================
+- private int level => level default value is 0 and become more after called operation levelUp()
+- private double damage
+=> sword's damage can change after calling levelUp()
+   which depends on sword's level
+   [ damage = damage*(1+0.1*level) ]
+
+==================
+-- Shield class --
+==================
+- private int level => level default value is 0 and become more after called operation levelUp()
+- private double defense
+=> shield's defense can change after calling levelUp()
+   which depends on shield's level
+   [ defense = defense*(1+0.05*level) ]
