@@ -1,0 +1,40 @@
+1.) AirPurifier Class Description
+Instance variables :
+- String model
+- String serialNo
+- String powerStat
+Instance methods :
+- void TurnOn()
+- void TurnOff()
+- AirPurifier(String model,String serialNo) <-- [Class Constructor]
+- void showDetail()
+Class variables :
+- static String mostPopularModel
+- static String bestQualityModel
+Class methods :
+- static void updateAPF(String newMPM,String newBQM)
+- static void showAPfacts()
+
+2.) Methods Implementation
+======================
+-- Instance methods --
+======================
+void TurnOn() : set the value of powerStat to "On"
+void TurnOff() : set the value of powerStat to "Off"
+AirPurifier(String model,String serialNo) :
+=> Class Constructor with String model and serialNo as input parameters to assign to object
+void showDetail() :
+=> show detail of an object which consist of
+   - Model Name (String model)
+   - Serial Number (String serialNo)
+   - Power Status (String powerStat)
+===================
+-- Class methods --
+===================
+static void updateAPF(String newMPM,String newBQM) :
+=> procedure methods with input consists of String newMPM, newBQM as parameters
+=> assign new value of mostPopularModel with newMPM and assign new value of bestQualityModel with newBQM
+static void showAPfacts() :
+=> show detail of an AirPurifier class which consist of
+   - Most Popular Model (static String mostPopularModel)
+   - Best Quality Model (static String bestQualityModel)
